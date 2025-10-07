@@ -409,6 +409,245 @@ Carlos,López,25,Hombre,Derecho,2.1,2.0,1</code></pre>
             </div>
         </div>
 
+        <!-- Guía de Columnas - ANTES DE CARGAR DATOS -->
+        <div class="upload-section" style="background: white; border-top: 3px solid #667eea;">
+            <div style="padding: 20px;">
+                <h2 style="color: #667eea; text-align: center; margin-bottom: 30px; font-size: 2em;">
+                    📖 GUÍA COMPLETA DE COLUMNAS
+                </h2>
+                <p style="text-align: center; color: #6c757d; margin-bottom: 40px; font-size: 1.1em;">
+                    Conoce todas las columnas que puedes incluir en tu archivo para obtener mejores resultados
+                </p>
+
+                <div class="chart-container">
+                    <div class="chart-title">✅ COLUMNAS OBLIGATORIAS (Mínimo requerido)</div>
+                    <p style="margin-bottom: 15px; color: #555;">Estas son <strong>necesarias</strong> para que el programa funcione:</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Columna</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo</th>
+                                <th>Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>edad</strong></td>
+                                <td>Edad del estudiante</td>
+                                <td>22, 19, 25</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">Número</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>genero</strong></td>
+                                <td>Género del estudiante</td>
+                                <td>Hombre, Mujer</td>
+                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>carrera</strong></td>
+                                <td>Nombre de la carrera</td>
+                                <td>Ingeniería, Medicina</td>
+                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>promedio_cons1</strong></td>
+                                <td>Promedio del primer período</td>
+                                <td>3.2, 4.5, 2.1</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">Número (1.0-5.0)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>promedio_cons2</strong></td>
+                                <td>Promedio del segundo período</td>
+                                <td>3.0, 4.3, 2.0</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">Número (1.0-5.0)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-title">🌟 COLUMNAS RECOMENDADAS (Mejoran el análisis)</div>
+                    <p style="margin-bottom: 15px; color: #555;">Estas <strong>mejoran mucho</strong> la predicción pero no son obligatorias:</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Columna</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo</th>
+                                <th>Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>nombre</strong></td>
+                                <td>Nombre del estudiante</td>
+                                <td>Juan, Ana, María</td>
+                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>apellido</strong></td>
+                                <td>Apellido del estudiante</td>
+                                <td>Pérez, García, López</td>
+                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>abandono</strong></td>
+                                <td>¿Abandonó? (0=No, 1=Sí)</td>
+                                <td>0, 1</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">Número (0 o 1)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="alert alert-warning" style="margin-top: 15px;">
+                        <strong>💡 Nota:</strong> Si no incluyes <code>abandono</code>, el programa lo calcula automáticamente basándose en los promedios.
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-title">💪 COLUMNAS OPCIONALES AVANZADAS (Para análisis profundo)</div>
+                    <p style="margin-bottom: 15px; color: #555;">Estas columnas hacen que el modelo de IA sea <strong>mucho más preciso</strong>:</p>
+                    
+                    <h3 style="color: #667eea; margin: 20px 0 10px 0;">📚 Información Académica:</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Columna</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo</th>
+                                <th>Rango</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>tiene_beca</strong></td>
+                                <td>¿Tiene beca?</td>
+                                <td>0 (No), 1 (Sí)</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">0 o 1</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>tiene_deudas</strong></td>
+                                <td>¿Tiene deudas?</td>
+                                <td>0 (No), 1 (Sí)</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">0 o 1</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>horas_estudio_semanal</strong></td>
+                                <td>Horas de estudio por semana</td>
+                                <td>10, 15, 20</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">0-40</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>ausencias_mes</strong></td>
+                                <td>Faltas al mes</td>
+                                <td>2, 5, 10</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">0-30</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 style="color: #667eea; margin: 20px 0 10px 0;">👨‍👩‍👧‍👦 Información Familiar/Social:</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Columna</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo</th>
+                                <th>Rango</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>apoyo_familiar</strong></td>
+                                <td>Nivel de apoyo familiar</td>
+                                <td>5, 7, 9</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">1-10</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>problemas_economicos</strong></td>
+                                <td>Nivel de problemas económicos</td>
+                                <td>3, 6, 8</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">1-10</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 style="color: #667eea; margin: 20px 0 10px 0;">🎓 Información Adicional:</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Columna</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo</th>
+                                <th>Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>semestre</strong></td>
+                                <td>Semestre actual</td>
+                                <td>1, 2, 3, 4</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">Número</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>trabaja</strong></td>
+                                <td>¿Trabaja mientras estudia?</td>
+                                <td>0 (No), 1 (Sí)</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">0 o 1</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>distancia_universidad_km</strong></td>
+                                <td>Distancia a la universidad</td>
+                                <td>5, 10, 25</td>
+                                <td><span class="badge" style="background: #3498db; color: white;">Número</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>estado_civil</strong></td>
+                                <td>Estado civil</td>
+                                <td>Soltero, Casado</td>
+                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-title">📝 EJEMPLOS DE ARCHIVOS</div>
+                    
+                    <h3 style="color: #667eea; margin: 20px 0 10px 0;">📄 EJEMPLO 1: Mínimo básico</h3>
+                    <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto;"><code>edad,genero,carrera,promedio_cons1,promedio_cons2
+22,Hombre,Ingeniería,3.2,3.0
+19,Mujer,Medicina,4.5,4.3
+25,Hombre,Derecho,2.1,2.0</code></pre>
+
+                    <h3 style="color: #667eea; margin: 20px 0 10px 0;">⭐ EJEMPLO 2: Recomendado</h3>
+                    <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto;"><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2,abandono
+Juan,Pérez,22,Hombre,Ingeniería,3.2,3.0,1
+Ana,García,19,Mujer,Medicina,4.5,4.3,0
+Carlos,López,25,Hombre,Derecho,2.1,2.0,1</code></pre>
+
+                    <h3 style="color: #667eea; margin: 20px 0 10px 0;">🚀 EJEMPLO 3: Completo profesional</h3>
+                    <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 0.85em;"><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2,abandono,tiene_beca,tiene_deudas,horas_estudio_semanal,ausencias_mes,apoyo_familiar,problemas_economicos
+Juan,Pérez,22,Hombre,Ingeniería,3.2,3.0,1,0,1,10,8,5,7
+Ana,García,19,Mujer,Medicina,4.5,4.3,0,1,0,25,2,9,2
+Carlos,López,25,Hombre,Derecho,2.1,2.0,1,0,1,5,15,3,9</code></pre>
+                </div>
+
+                <div class="alert alert-success">
+                    <strong>💡 Consejo:</strong> Empieza con las columnas obligatorias y agrega más según necesites mayor precisión en las predicciones.
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn" onclick="document.getElementById('fileInput').click()" style="font-size: 1.2em; padding: 20px 50px;">
+                        🚀 ¡Listo! Cargar mi archivo ahora
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Loading -->
         <div class="loading" id="loading">
             <div class="spinner"></div>
@@ -522,6 +761,53 @@ Carlos,López,25,Hombre,Derecho,2.1,2.0,1</code></pre>
             </div>
 
             <div class="table-container" id="tablaDatos"></div>
+        </div>
+    </div>
+                            <td>¿Trabaja mientras estudia?</td>
+                            <td>0 (No), 1 (Sí)</td>
+                            <td><span class="badge" style="background: #3498db; color: white;">0 o 1</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>distancia_universidad_km</strong></td>
+                            <td>Distancia a la universidad</td>
+                            <td>5, 10, 25</td>
+                            <td><span class="badge" style="background: #3498db; color: white;">Número</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>estado_civil</strong></td>
+                            <td>Estado civil</td>
+                            <td>Soltero, Casado</td>
+                            <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">📝 EJEMPLOS DE ARCHIVOS</div>
+                
+                <h3 style="color: #667eea; margin: 20px 0 10px 0;">📄 EJEMPLO 1: Mínimo básico</h3>
+                <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto;"><code>edad,genero,carrera,promedio_cons1,promedio_cons2
+22,Hombre,Ingeniería,3.2,3.0
+19,Mujer,Medicina,4.5,4.3
+25,Hombre,Derecho,2.1,2.0</code></pre>
+
+                <h3 style="color: #667eea; margin: 20px 0 10px 0;">⭐ EJEMPLO 2: Recomendado</h3>
+                <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto;"><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2,abandono
+Juan,Pérez,22,Hombre,Ingeniería,3.2,3.0,1
+Ana,García,19,Mujer,Medicina,4.5,4.3,0
+Carlos,López,25,Hombre,Derecho,2.1,2.0,1</code></pre>
+
+                <h3 style="color: #667eea; margin: 20px 0 10px 0;">🚀 EJEMPLO 3: Completo profesional</h3>
+                <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 0.85em;"><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2,abandono,tiene_beca,tiene_deudas,horas_estudio_semanal,ausencias_mes,apoyo_familiar,problemas_economicos
+Juan,Pérez,22,Hombre,Ingeniería,3.2,3.0,1,0,1,10,8,5,7
+Ana,García,19,Mujer,Medicina,4.5,4.3,0,1,0,25,2,9,2
+Carlos,López,25,Hombre,Derecho,2.1,2.0,1,0,1,5,15,3,9</code></pre>
+            </div>
+
+            <div class="alert alert-success">
+                <strong>💡 Consejo:</strong> Empieza con las columnas obligatorias y agrega más según necesites mayor precisión en las predicciones.
+            </div>
         </div>
     </div>
 
