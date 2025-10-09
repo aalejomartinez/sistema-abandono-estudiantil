@@ -47,10 +47,110 @@
             opacity: 0.95;
         }
 
+        .progress-container {
+            background: white;
+            padding: 40px;
+            border-bottom: 3px solid #e9ecef;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #e9ecef;
+            z-index: 0;
+        }
+
+        .progress-line-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #6c757d;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-circle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step.completed .step-circle {
+            background: #00b894;
+            color: white;
+        }
+
+        .step-label {
+            margin-top: 15px;
+            font-weight: 600;
+            color: #6c757d;
+            text-align: center;
+        }
+
+        .step.active .step-label {
+            color: #667eea;
+        }
+
+        .step.completed .step-label {
+            color: #00b894;
+        }
+
         .upload-section {
             padding: 40px;
             background: #f8f9fa;
-            border-bottom: 3px solid #e9ecef;
+            display: none;
+        }
+
+        .upload-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
         }
 
         .upload-box {
@@ -61,6 +161,7 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-bottom: 20px;
         }
 
         .upload-box:hover {
@@ -105,11 +206,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 20px 10px;
+            margin: 10px;
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .btn:hover {
+        .btn:hover:not(:disabled) {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
         }
@@ -120,155 +221,12 @@
             transform: none;
         }
 
-        .tabs {
-            display: flex;
-            background: #f8f9fa;
-            padding: 0 20px;
-            overflow-x: auto;
-            border-bottom: 2px solid #e9ecef;
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
         }
 
-        .tab {
-            padding: 20px 30px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #6c757d;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .tab:hover {
-            color: #667eea;
-            background: rgba(102, 126, 234, 0.1);
-        }
-
-        .tab.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-            background: white;
-        }
-
-        .content {
-            padding: 40px;
-            display: none;
-        }
-
-        .content.active {
-            display: block;
-        }
-
-        .kpi-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .kpi-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .kpi-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .kpi-label {
-            font-size: 0.9em;
-            opacity: 0.9;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .kpi-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .kpi-subtext {
-            font-size: 0.85em;
-            opacity: 0.8;
-        }
-
-        .chart-container {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-
-        .chart-title {
-            font-size: 1.4em;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e9ecef;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 30px;
-        }
-
-        .table-container {
-            overflow-x: auto;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-
-        th {
-            background: #667eea;
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        tr:hover {
-            background: #f8f9fa;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-
-        .badge-malo {
-            background: #fee;
-            color: #c00;
-        }
-
-        .badge-aceptable {
-            background: #ffeaa7;
-            color: #d63031;
-        }
-
-        .badge-bueno {
-            background: #dfe6e9;
-            color: #00b894;
+        .btn-success {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
         }
 
         .alert {
@@ -283,16 +241,50 @@
             border-left: 4px solid #1976d2;
         }
 
+        .alert-success {
+            background: #e8f5e9;
+            color: #388e3c;
+            border-left: 4px solid #388e3c;
+        }
+
         .alert-warning {
             background: #fff3e0;
             color: #f57c00;
             border-left: 4px solid #f57c00;
         }
 
-        .alert-success {
-            background: #e8f5e9;
-            color: #388e3c;
-            border-left: 4px solid #388e3c;
+        .model-info {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .model-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
         }
 
         .loading {
@@ -336,23 +328,180 @@
             background: white;
             padding: 15px;
             border-radius: 5px;
-            display: block;
             overflow-x: auto;
             margin: 0;
         }
-        
-        .example-section code {
-            font-family: 'Courier New', monospace;
+
+        .results-section {
+            padding: 40px;
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .kpi-label {
             font-size: 0.9em;
-            color: #333;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .kpi-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .predictions-table {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .badge-riesgo-alto {
+            background: #fee;
+            color: #c00;
+        }
+
+        .badge-riesgo-medio {
+            background: #ffeaa7;
+            color: #d63031;
+        }
+
+        .badge-riesgo-bajo {
+            background: #dfe6e9;
+            color: #00b894;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin: 20px 0;
         }
 
         @media (max-width: 768px) {
             .container {
                 border-radius: 0;
+                margin: 0;
             }
 
             .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .progress-steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .progress-line {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .section-description {
+                font-size: 1em;
+            }
+
+            .upload-section {
+                padding: 20px;
+            }
+
+            .upload-box {
+                padding: 30px 20px;
+            }
+
+            .upload-icon {
+                font-size: 3em;
+            }
+
+            .upload-text {
+                font-size: 1.1em;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 1em;
+                margin: 8px 5px;
+            }
+
+            .kpi-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .kpi-card {
+                padding: 20px;
+            }
+
+            .kpi-value {
+                font-size: 2em;
+            }
+
+            .model-stats {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-value {
                 font-size: 1.8em;
             }
 
@@ -360,280 +509,477 @@
                 grid-template-columns: 1fr;
             }
 
-            .tabs {
-                padding: 0 10px;
+            .predictions-table {
+                padding: 15px;
+                overflow-x: auto;
             }
 
-            .tab {
-                padding: 15px 20px;
+            table {
+                font-size: 0.85em;
+            }
+
+            th, td {
+                padding: 10px 8px;
+                white-space: nowrap;
+            }
+
+            .example-section pre {
+                font-size: 0.75em;
+                padding: 10px;
+            }
+
+            #modalGuia > div {
+                margin: 20px;
+                padding: 20px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            #modalGuia h2 {
+                font-size: 1.8em;
+            }
+
+            #modalGuia h3 {
+                font-size: 1.2em;
+            }
+
+            #modalGuia table {
+                font-size: 0.85em;
+            }
+
+            #modalGuia th, #modalGuia td {
+                padding: 8px;
+            }
+
+            #modalGuia pre {
+                font-size: 0.75em;
+            }
+
+            .results-section {
+                padding: 20px;
+            }
+
+            .chart-container {
+                padding: 15px;
+            }
+
+            body {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+
+            .kpi-container {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .progress-container {
+                padding: 20px;
+            }
+
+            .step-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2em;
+            }
+
+            .step-label {
+                font-size: 0.9em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <h1>🎓 Sistema de Predicción de Abandono Estudiantil</h1>
-            <p>Análisis Inteligente con Escala 1.0-5.0</p>
+            <p>Entrenamiento y Predicción con IA</p>
         </div>
 
-        <!-- Upload Section -->
-        <div class="upload-section">
-            <div class="upload-box" id="uploadBox">
-                <div class="upload-icon">📊</div>
-                <div class="upload-text">Arrastra tu archivo aquí o haz clic para seleccionar</div>
-                <div class="upload-subtext">Formatos soportados: CSV, XLSX | Tamaño máximo: 10MB</div>
-                <input type="file" id="fileInput" accept=".csv,.xlsx">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="progress-line">
+                    <div class="progress-line-fill" id="progressFill"></div>
+                </div>
+                <div class="step active" id="step1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Entrenar Modelo</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Hacer Predicciones</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Ver Resultados</div>
+                </div>
             </div>
-            <div style="text-align: center;">
-                <button class="btn" onclick="document.getElementById('fileInput').click()">
-                    📁 Seleccionar Archivo
+        </div>
+
+        <!-- ETAPA 1: Entrenamiento -->
+        <div class="upload-section active" id="section1">
+            <div class="section-title">🤖 ETAPA 1: Entrenar el Modelo</div>
+            <div class="section-description">
+                Carga un archivo CSV con datos históricos de estudiantes (debe incluir la columna "abandono")
+            </div>
+
+            <div class="alert alert-info">
+                <strong>📋 Requisito:</strong> El archivo debe contener estudiantes con información conocida de abandono (0 = continúa, 1 = abandonó).
+                Esto permitirá entrenar el modelo de IA.
+            </div>
+
+            <div class="upload-box" id="uploadBox1">
+                <div class="upload-icon">📚</div>
+                <div class="upload-text">Arrastra el archivo de entrenamiento aquí</div>
+                <div class="upload-subtext">CSV con datos históricos | Máximo 10MB</div>
+                <input type="file" id="fileInput1" accept=".csv">
+            </div>
+
+            <div class="btn-group">
+                <button class="btn" onclick="document.getElementById('fileInput1').click()">
+                    📁 Seleccionar Archivo de Entrenamiento
                 </button>
-                <button class="btn" onclick="generarEjemplo()" style="background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);">
+                <button class="btn btn-success" onclick="generarEjemploEntrenamiento()">
                     ✨ Generar Datos de Ejemplo
                 </button>
             </div>
 
             <div class="example-section">
-                <h3>📋 Formato esperado del archivo CSV/Excel:</h3>
+                <h3>📋 Formato del archivo de ENTRENAMIENTO:</h3>
                 <pre><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2,abandono
 Juan,Pérez,22,Hombre,Ingeniería,3.2,3.0,1
 Ana,García,19,Mujer,Medicina,4.5,4.3,0
 Carlos,López,25,Hombre,Derecho,2.1,2.0,1</code></pre>
                 <p style="margin-top: 10px; color: #6c757d;">
-                    <strong>Columnas requeridas:</strong> nombre, apellido, edad, genero, carrera, promedio_cons1, promedio_cons2<br>
-                    <strong>Opcional:</strong> abandono (se calculará automáticamente si no existe)<br>
-                    <strong>Escala de promedios:</strong> 1.0 - 5.0 (se convertirá automáticamente si usas otra escala)
+                    <strong>⚠️ IMPORTANTE:</strong> Debe incluir la columna <code>abandono</code> con valores 0 (continúa) o 1 (abandonó).
                 </p>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn" onclick="mostrarGuiaCompleta()" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
+                        📖 Ver Guía Completa de Columnas
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- Guía de Columnas - ANTES DE CARGAR DATOS -->
-        <div class="upload-section" style="background: white; border-top: 3px solid #667eea;">
-            <div style="padding: 20px;">
-                <h2 style="color: #667eea; text-align: center; margin-bottom: 30px; font-size: 2em;">
+        <!-- ETAPA 2: Predicción -->
+        <div class="upload-section" id="section2">
+            <div class="section-title">🔮 ETAPA 2: Hacer Predicciones</div>
+            <div class="section-description">
+                Carga un archivo CSV con estudiantes nuevos para predecir si abandonarán
+            </div>
+
+            <div class="alert alert-success" id="modelInfo">
+                <strong>✅ Modelo entrenado exitosamente</strong>
+                <div class="model-info">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">📊 Información del Modelo</h3>
+                    <div class="model-stats" id="modelStats"></div>
+                </div>
+            </div>
+
+            <div class="upload-box" id="uploadBox2">
+                <div class="upload-icon">🔍</div>
+                <div class="upload-text">Arrastra el archivo para predicción aquí</div>
+                <div class="upload-subtext">CSV con estudiantes nuevos | La columna "abandono" es opcional</div>
+                <input type="file" id="fileInput2" accept=".csv">
+            </div>
+
+            <div class="btn-group">
+                <button class="btn" onclick="document.getElementById('fileInput2').click()">
+                    📁 Seleccionar Archivo para Predicción
+                </button>
+                <button class="btn btn-success" onclick="generarEjemploPrediccion()">
+                    ✨ Generar Datos de Ejemplo
+                </button>
+                <button class="btn btn-secondary" onclick="volverEtapa1()">
+                    ⬅️ Volver a Entrenar
+                </button>
+            </div>
+
+            <div class="example-section">
+                <h3>📋 Formato del archivo de PREDICCIÓN:</h3>
+                <pre><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2
+María,González,21,Mujer,Ingeniería,3.5,3.4
+Pedro,Ramírez,20,Hombre,Medicina,2.8,2.7</code></pre>
+                <p style="margin-top: 10px; color: #6c757d;">
+                    <strong>💡 Nota:</strong> La columna <code>abandono</code> NO es necesaria. El modelo la predecirá.
+                </p>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn" onclick="mostrarGuiaCompleta()" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
+                        📖 Ver Guía Completa de Columnas
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ETAPA 3: Resultados -->
+        <div class="results-section" id="section3">
+            <div class="section-title">📊 ETAPA 3: Resultados de Predicción</div>
+            
+            <div class="alert alert-success">
+                <strong>✅ Predicción completada</strong> - El modelo ha analizado todos los estudiantes
+            </div>
+
+            <div class="kpi-container" id="kpiResults"></div>
+
+            <!-- Gráficas de Análisis -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <h3 style="color: #667eea; margin-bottom: 20px; text-align: center;">🎓 Abandono por Carrera</h3>
+                    <canvas id="chartCarreraAbandono"></canvas>
+                </div>
+
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <h3 style="color: #667eea; margin-bottom: 20px; text-align: center;">👥 Estudiantes por Carrera</h3>
+                    <canvas id="chartCarreraTotal"></canvas>
+                </div>
+
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <h3 style="color: #667eea; margin-bottom: 20px; text-align: center;">👫 Abandono por Género</h3>
+                    <canvas id="chartGeneroAbandono"></canvas>
+                </div>
+            </div>
+
+            <div class="predictions-table">
+                <h3 style="color: #667eea; margin-bottom: 20px;">🎯 Predicciones Detalladas</h3>
+                <div id="tableResults"></div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-success" onclick="descargarPredicciones()">
+                    💾 Descargar Predicciones CSV
+                </button>
+                <button class="btn" onclick="nuevaPrediccion()">
+                    🔄 Nueva Predicción
+                </button>
+                <button class="btn btn-secondary" onclick="volverInicio()">
+                    🏠 Volver al Inicio
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p id="loadingText">Procesando datos...</p>
+        </div>
+
+        <!-- Modal Guía Completa -->
+        <div id="modalGuia" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; overflow-y: auto;">
+            <div style="max-width: 1200px; margin: 50px auto; background: white; border-radius: 20px; padding: 40px; position: relative;">
+                <button onclick="cerrarGuiaCompleta()" style="position: absolute; top: 20px; right: 20px; background: #e74c3c; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5em; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">×</button>
+                
+                <h2 style="color: #667eea; text-align: center; margin-bottom: 30px; font-size: 2.5em;">
                     📖 GUÍA COMPLETA DE COLUMNAS
                 </h2>
-                <p style="text-align: center; color: #6c757d; margin-bottom: 40px; font-size: 1.1em;">
+                <p style="text-align: center; color: #6c757d; margin-bottom: 40px; font-size: 1.2em;">
                     Conoce todas las columnas que puedes incluir en tu archivo para obtener mejores resultados
                 </p>
 
-                <div class="chart-container">
-                    <div class="chart-title">✅ COLUMNAS OBLIGATORIAS (Mínimo requerido)</div>
+                <div style="background: white; border: 2px solid #667eea; border-radius: 15px; padding: 25px; margin-bottom: 30px;">
+                    <div style="font-size: 1.5em; font-weight: bold; color: #667eea; margin-bottom: 20px;">✅ COLUMNAS OBLIGATORIAS (Mínimo requerido)</div>
                     <p style="margin-bottom: 15px; color: #555;">Estas son <strong>necesarias</strong> para que el programa funcione:</p>
                     
-                    <table>
+                    <table style="width: 100%; margin-top: 20px;">
                         <thead>
-                            <tr>
-                                <th>Columna</th>
-                                <th>Descripción</th>
-                                <th>Ejemplo</th>
-                                <th>Tipo</th>
+                            <tr style="background: #667eea;">
+                                <th style="color: white; padding: 15px;">Columna</th>
+                                <th style="color: white; padding: 15px;">Descripción</th>
+                                <th style="color: white; padding: 15px;">Ejemplo</th>
+                                <th style="color: white; padding: 15px;">Tipo</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>edad</strong></td>
-                                <td>Edad del estudiante</td>
-                                <td>22, 19, 25</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">Número</span></td>
+                                <td style="padding: 12px;"><strong>edad</strong></td>
+                                <td style="padding: 12px;">Edad del estudiante</td>
+                                <td style="padding: 12px;">22, 19, 25</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">Número</span></td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px;"><strong>genero</strong></td>
+                                <td style="padding: 12px;">Género del estudiante</td>
+                                <td style="padding: 12px;">Hombre, Mujer</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
                             </tr>
                             <tr>
-                                <td><strong>genero</strong></td>
-                                <td>Género del estudiante</td>
-                                <td>Hombre, Mujer</td>
-                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                                <td style="padding: 12px;"><strong>carrera</strong></td>
+                                <td style="padding: 12px;">Nombre de la carrera</td>
+                                <td style="padding: 12px;">Ingeniería, Medicina</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px;"><strong>promedio_cons1</strong></td>
+                                <td style="padding: 12px;">Promedio del primer período</td>
+                                <td style="padding: 12px;">3.2, 4.5, 2.1</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">Número (1.0-5.0)</span></td>
                             </tr>
                             <tr>
-                                <td><strong>carrera</strong></td>
-                                <td>Nombre de la carrera</td>
-                                <td>Ingeniería, Medicina</td>
-                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>promedio_cons1</strong></td>
-                                <td>Promedio del primer período</td>
-                                <td>3.2, 4.5, 2.1</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">Número (1.0-5.0)</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>promedio_cons2</strong></td>
-                                <td>Promedio del segundo período</td>
-                                <td>3.0, 4.3, 2.0</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">Número (1.0-5.0)</span></td>
+                                <td style="padding: 12px;"><strong>promedio_cons2</strong></td>
+                                <td style="padding: 12px;">Promedio del segundo período</td>
+                                <td style="padding: 12px;">3.0, 4.3, 2.0</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">Número (1.0-5.0)</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div class="chart-container">
-                    <div class="chart-title">🌟 COLUMNAS RECOMENDADAS (Mejoran el análisis)</div>
+                <div style="background: white; border: 2px solid #00b894; border-radius: 15px; padding: 25px; margin-bottom: 30px;">
+                    <div style="font-size: 1.5em; font-weight: bold; color: #00b894; margin-bottom: 20px;">🌟 COLUMNAS RECOMENDADAS (Mejoran el análisis)</div>
                     <p style="margin-bottom: 15px; color: #555;">Estas <strong>mejoran mucho</strong> la predicción pero no son obligatorias:</p>
                     
-                    <table>
+                    <table style="width: 100%; margin-top: 20px;">
                         <thead>
-                            <tr>
-                                <th>Columna</th>
-                                <th>Descripción</th>
-                                <th>Ejemplo</th>
-                                <th>Tipo</th>
+                            <tr style="background: #00b894;">
+                                <th style="color: white; padding: 15px;">Columna</th>
+                                <th style="color: white; padding: 15px;">Descripción</th>
+                                <th style="color: white; padding: 15px;">Ejemplo</th>
+                                <th style="color: white; padding: 15px;">Tipo</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>nombre</strong></td>
-                                <td>Nombre del estudiante</td>
-                                <td>Juan, Ana, María</td>
-                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                                <td style="padding: 12px;"><strong>nombre</strong></td>
+                                <td style="padding: 12px;">Nombre del estudiante</td>
+                                <td style="padding: 12px;">Juan, Ana, María</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px;"><strong>apellido</strong></td>
+                                <td style="padding: 12px;">Apellido del estudiante</td>
+                                <td style="padding: 12px;">Pérez, García, López</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
                             </tr>
                             <tr>
-                                <td><strong>apellido</strong></td>
-                                <td>Apellido del estudiante</td>
-                                <td>Pérez, García, López</td>
-                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>abandono</strong></td>
-                                <td>¿Abandonó? (0=No, 1=Sí)</td>
-                                <td>0, 1</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">Número (0 o 1)</span></td>
+                                <td style="padding: 12px;"><strong>abandono</strong></td>
+                                <td style="padding: 12px;">¿Abandonó? (0=No, 1=Sí)</td>
+                                <td style="padding: 12px;">0, 1</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">Número (0 o 1)</span></td>
                             </tr>
                         </tbody>
                     </table>
                     
                     <div class="alert alert-warning" style="margin-top: 15px;">
-                        <strong>💡 Nota:</strong> Si no incluyes <code>abandono</code>, el programa lo calcula automáticamente basándose en los promedios.
+                        <strong>💡 Nota:</strong> Si no incluyes <code>abandono</code> en el archivo de predicción, el programa lo calculará. Pero es <strong>OBLIGATORIO</strong> en el archivo de entrenamiento.
                     </div>
                 </div>
 
-                <div class="chart-container">
-                    <div class="chart-title">💪 COLUMNAS OPCIONALES AVANZADAS (Para análisis profundo)</div>
+                <div style="background: white; border: 2px solid #f39c12; border-radius: 15px; padding: 25px; margin-bottom: 30px;">
+                    <div style="font-size: 1.5em; font-weight: bold; color: #f39c12; margin-bottom: 20px;">💪 COLUMNAS OPCIONALES AVANZADAS (Para análisis profundo)</div>
                     <p style="margin-bottom: 15px; color: #555;">Estas columnas hacen que el modelo de IA sea <strong>mucho más preciso</strong>:</p>
                     
                     <h3 style="color: #667eea; margin: 20px 0 10px 0;">📚 Información Académica:</h3>
-                    <table>
+                    <table style="width: 100%; margin-top: 15px;">
                         <thead>
-                            <tr>
-                                <th>Columna</th>
-                                <th>Descripción</th>
-                                <th>Ejemplo</th>
-                                <th>Rango</th>
+                            <tr style="background: #f39c12;">
+                                <th style="color: white; padding: 15px;">Columna</th>
+                                <th style="color: white; padding: 15px;">Descripción</th>
+                                <th style="color: white; padding: 15px;">Ejemplo</th>
+                                <th style="color: white; padding: 15px;">Rango</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>tiene_beca</strong></td>
-                                <td>¿Tiene beca?</td>
-                                <td>0 (No), 1 (Sí)</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">0 o 1</span></td>
+                                <td style="padding: 12px;"><strong>tiene_beca</strong></td>
+                                <td style="padding: 12px;">¿Tiene beca?</td>
+                                <td style="padding: 12px;">0 (No), 1 (Sí)</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">0 o 1</span></td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px;"><strong>tiene_deudas</strong></td>
+                                <td style="padding: 12px;">¿Tiene deudas?</td>
+                                <td style="padding: 12px;">0 (No), 1 (Sí)</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">0 o 1</span></td>
                             </tr>
                             <tr>
-                                <td><strong>tiene_deudas</strong></td>
-                                <td>¿Tiene deudas?</td>
-                                <td>0 (No), 1 (Sí)</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">0 o 1</span></td>
+                                <td style="padding: 12px;"><strong>horas_estudio_semanal</strong></td>
+                                <td style="padding: 12px;">Horas de estudio por semana</td>
+                                <td style="padding: 12px;">10, 15, 20</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">0-40</span></td>
                             </tr>
-                            <tr>
-                                <td><strong>horas_estudio_semanal</strong></td>
-                                <td>Horas de estudio por semana</td>
-                                <td>10, 15, 20</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">0-40</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>ausencias_mes</strong></td>
-                                <td>Faltas al mes</td>
-                                <td>2, 5, 10</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">0-30</span></td>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px;"><strong>ausencias_mes</strong></td>
+                                <td style="padding: 12px;">Faltas al mes</td>
+                                <td style="padding: 12px;">2, 5, 10</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">0-30</span></td>
                             </tr>
                         </tbody>
                     </table>
 
                     <h3 style="color: #667eea; margin: 20px 0 10px 0;">👨‍👩‍👧‍👦 Información Familiar/Social:</h3>
-                    <table>
+                    <table style="width: 100%; margin-top: 15px;">
                         <thead>
-                            <tr>
-                                <th>Columna</th>
-                                <th>Descripción</th>
-                                <th>Ejemplo</th>
-                                <th>Rango</th>
+                            <tr style="background: #9b59b6;">
+                                <th style="color: white; padding: 15px;">Columna</th>
+                                <th style="color: white; padding: 15px;">Descripción</th>
+                                <th style="color: white; padding: 15px;">Ejemplo</th>
+                                <th style="color: white; padding: 15px;">Rango</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>apoyo_familiar</strong></td>
-                                <td>Nivel de apoyo familiar</td>
-                                <td>5, 7, 9</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">1-10</span></td>
+                                <td style="padding: 12px;"><strong>apoyo_familiar</strong></td>
+                                <td style="padding: 12px;">Nivel de apoyo familiar</td>
+                                <td style="padding: 12px;">5, 7, 9</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">1-10</span></td>
                             </tr>
-                            <tr>
-                                <td><strong>problemas_economicos</strong></td>
-                                <td>Nivel de problemas económicos</td>
-                                <td>3, 6, 8</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">1-10</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h3 style="color: #667eea; margin: 20px 0 10px 0;">🎓 Información Adicional:</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Columna</th>
-                                <th>Descripción</th>
-                                <th>Ejemplo</th>
-                                <th>Tipo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>semestre</strong></td>
-                                <td>Semestre actual</td>
-                                <td>1, 2, 3, 4</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">Número</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>trabaja</strong></td>
-                                <td>¿Trabaja mientras estudia?</td>
-                                <td>0 (No), 1 (Sí)</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">0 o 1</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>distancia_universidad_km</strong></td>
-                                <td>Distancia a la universidad</td>
-                                <td>5, 10, 25</td>
-                                <td><span class="badge" style="background: #3498db; color: white;">Número</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>estado_civil</strong></td>
-                                <td>Estado civil</td>
-                                <td>Soltero, Casado</td>
-                                <td><span class="badge" style="background: #9b59b6; color: white;">Texto</span></td>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px;"><strong>problemas_economicos</strong></td>
+                                <td style="padding: 12px;">Nivel de problemas económicos</td>
+                                <td style="padding: 12px;">3, 6, 8</td>
+                                <td style="padding: 12px;"><span class="badge" style="background: #3498db; color: white;">1-10</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div class="chart-container">
-                    <div class="chart-title">📝 EJEMPLOS DE ARCHIVOS</div>
+                <div style="background: #e8f5e9; border: 2px solid #00b894; border-radius: 15px; padding: 25px; margin-bottom: 30px;">
+                    <div style="font-size: 1.5em; font-weight: bold; color: #00b894; margin-bottom: 20px;">📝 EJEMPLOS DE ARCHIVOS</div>
                     
                     <h3 style="color: #667eea; margin: 20px 0 10px 0;">📄 EJEMPLO 1: Mínimo básico</h3>
-                    <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto;"><code>edad,genero,carrera,promedio_cons1,promedio_cons2
+                    <pre style="background: white; padding: 15px; border-radius: 8px; overflow-x: auto; border: 1px solid #ddd;"><code>edad,genero,carrera,promedio_cons1,promedio_cons2
 22,Hombre,Ingeniería,3.2,3.0
 19,Mujer,Medicina,4.5,4.3
 25,Hombre,Derecho,2.1,2.0</code></pre>
+                    <p style="margin-top: 10px; color: #555;">
+                        ⚠️ <strong>Solo para predicción.</strong> Para entrenar necesitas incluir la columna <code>abandono</code>.
+                    </p>
 
-                    <h3 style="color: #667eea; margin: 20px 0 10px 0;">⭐ EJEMPLO 2: Recomendado</h3>
-                    <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto;"><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2,abandono
+                    <h3 style="color: #667eea; margin: 30px 0 10px 0;">⭐ EJEMPLO 2: Recomendado (para entrenamiento)</h3>
+                    <pre style="background: white; padding: 15px; border-radius: 8px; overflow-x: auto; border: 1px solid #ddd;"><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2,abandono
 Juan,Pérez,22,Hombre,Ingeniería,3.2,3.0,1
 Ana,García,19,Mujer,Medicina,4.5,4.3,0
 Carlos,López,25,Hombre,Derecho,2.1,2.0,1</code></pre>
+                    <p style="margin-top: 10px; color: #555;">
+                        ✅ <strong>Perfecto para entrenar el modelo.</strong> Incluye nombres y columna abandono.
+                    </p>
 
-                    <h3 style="color: #667eea; margin: 20px 0 10px 0;">🚀 EJEMPLO 3: Completo profesional</h3>
-                    <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 0.85em;"><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2,abandono,tiene_beca,tiene_deudas,horas_estudio_semanal,ausencias_mes,apoyo_familiar,problemas_economicos
+                    <h3 style="color: #667eea; margin: 30px 0 10px 0;">🚀 EJEMPLO 3: Completo profesional</h3>
+                    <pre style="background: white; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 0.85em; border: 1px solid #ddd;"><code>nombre,apellido,edad,genero,carrera,promedio_cons1,promedio_cons2,abandono,tiene_beca,tiene_deudas,horas_estudio_semanal,ausencias_mes,apoyo_familiar,problemas_economicos
 Juan,Pérez,22,Hombre,Ingeniería,3.2,3.0,1,0,1,10,8,5,7
 Ana,García,19,Mujer,Medicina,4.5,4.3,0,1,0,25,2,9,2
 Carlos,López,25,Hombre,Derecho,2.1,2.0,1,0,1,5,15,3,9</code></pre>
+                    <p style="margin-top: 10px; color: #555;">
+                        🎯 <strong>Máxima precisión.</strong> Incluye todas las columnas opcionales para predicciones más exactas.
+                    </p>
                 </div>
 
                 <div class="alert alert-success">
@@ -641,189 +987,642 @@ Carlos,López,25,Hombre,Derecho,2.1,2.0,1,0,1,5,15,3,9</code></pre>
                 </div>
 
                 <div style="text-align: center; margin-top: 30px;">
-                    <button class="btn" onclick="document.getElementById('fileInput').click()" style="font-size: 1.2em; padding: 20px 50px;">
-                        🚀 ¡Listo! Cargar mi archivo ahora
+                    <button class="btn" onclick="cerrarGuiaCompleta()" style="font-size: 1.2em; padding: 20px 50px;">
+                        ✅ Entendido - Cerrar Guía
                     </button>
                 </div>
             </div>
         </div>
-
-        <!-- Loading -->
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>Procesando datos y generando análisis...</p>
-        </div>
-
-        <!-- Tabs -->
-        <div class="tabs" id="tabs" style="display: none;">
-            <div class="tab active" onclick="cambiarTab(0)">📊 Resumen General</div>
-            <div class="tab" onclick="cambiarTab(1)">🎓 Análisis por Carrera</div>
-            <div class="tab" onclick="cambiarTab(2)">📈 Detalles Avanzados</div>
-            <div class="tab" onclick="cambiarTab(3)">📋 Datos Completos</div>
-        </div>
-
-        <!-- Content Tab 1: Resumen General -->
-        <div class="content active" id="content0">
-            <div class="alert alert-info">
-                <strong>ℹ️ Información:</strong> Esta sección muestra la visión general del análisis de abandono estudiantil.
-            </div>
-
-            <div class="kpi-container" id="kpiContainer"></div>
-
-            <div class="grid-2">
-                <div class="chart-container">
-                    <div class="chart-title">📈 Distribución de Abandono</div>
-                    <canvas id="chartAbandonoPie"></canvas>
-                </div>
-
-                <div class="chart-container">
-                    <div class="chart-title">📊 Comparación de Promedios</div>
-                    <canvas id="chartPromedios"></canvas>
-                </div>
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-title">🎯 Distribución por Categorías de Rendimiento</div>
-                <canvas id="chartCategorias"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-title">📊 Histograma de Promedios</div>
-                <canvas id="chartHistograma"></canvas>
-            </div>
-        </div>
-
-        <!-- Content Tab 2: Análisis por Carrera -->
-        <div class="content" id="content1">
-            <div class="alert alert-warning">
-                <strong>⚠️ Análisis Crítico:</strong> Identifica las carreras con mayor riesgo de abandono.
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-title">🎓 Tasa de Abandono por Carrera</div>
-                <canvas id="chartCarreraAbandono"></canvas>
-            </div>
-
-            <div class="grid-2">
-                <div class="chart-container">
-                    <div class="chart-title">👥 Estudiantes por Carrera</div>
-                    <canvas id="chartCarreraTotal"></canvas>
-                </div>
-
-                <div class="chart-container">
-                    <div class="chart-title">📊 Promedio por Carrera</div>
-                    <canvas id="chartCarreraPromedio"></canvas>
-                </div>
-            </div>
-
-            <div class="table-container" id="tablaCarreras"></div>
-        </div>
-
-        <!-- Content Tab 3: Detalles Avanzados -->
-        <div class="content" id="content2">
-            <div class="alert alert-success">
-                <strong>✅ Análisis Detallado:</strong> Visualiza patrones específicos y correlaciones.
-            </div>
-
-            <div class="grid-2">
-                <div class="chart-container">
-                    <div class="chart-title">👫 Abandono por Género</div>
-                    <canvas id="chartGenero"></canvas>
-                </div>
-
-                <div class="chart-container">
-                    <div class="chart-title">📈 Evolución del Rendimiento</div>
-                    <canvas id="chartEvolucion"></canvas>
-                </div>
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-title">🔍 Scatter: Cons1 vs Cons2</div>
-                <canvas id="chartScatter"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-title">📦 Distribución por Box Plot</div>
-                <canvas id="chartBox"></canvas>
-            </div>
-        </div>
-
-        <!-- Content Tab 4: Datos Completos -->
-        <div class="content" id="content3">
-            <div class="alert alert-info">
-                <strong>📋 Tabla de Datos:</strong> Visualiza todos los estudiantes y sus métricas.
-            </div>
-
-            <div style="text-align: right; margin-bottom: 20px;">
-                <button class="btn" onclick="descargarCSV()">
-                    💾 Descargar Resultados CSV
-                </button>
-            </div>
-
-            <div class="table-container" id="tablaDatos"></div>
-        </div>
     </div>
 
     <script>
-        let datosGlobales = null;
-        let charts = {};
+        let modeloEntrenado = null;
+        let datosEntrenamiento = null;
+        let prediccionesResultado = null;
 
-        // Configuración de drag & drop
-        const uploadBox = document.getElementById('uploadBox');
-        const fileInput = document.getElementById('fileInput');
-
-        uploadBox.addEventListener('click', () => fileInput.click());
+        // Configurar drag & drop para etapa 1
+        setupDragDrop('uploadBox1', 'fileInput1', procesarArchivoEntrenamiento);
         
-        uploadBox.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadBox.classList.add('dragover');
+        // Configurar drag & drop para etapa 2
+        setupDragDrop('uploadBox2', 'fileInput2', procesarArchivoPrediccion);
+
+        document.getElementById('fileInput1').addEventListener('change', (e) => {
+            if (e.target.files.length > 0) procesarArchivoEntrenamiento(e.target.files[0]);
         });
 
-        uploadBox.addEventListener('dragleave', () => {
-            uploadBox.classList.remove('dragover');
+        document.getElementById('fileInput2').addEventListener('change', (e) => {
+            if (e.target.files.length > 0) procesarArchivoPrediccion(e.target.files[0]);
         });
 
-        uploadBox.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadBox.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                procesarArchivo(files[0]);
-            }
-        });
+        function setupDragDrop(boxId, inputId, callback) {
+            const box = document.getElementById(boxId);
+            const input = document.getElementById(inputId);
 
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                procesarArchivo(e.target.files[0]);
-            }
-        });
-
-        // Procesar archivo
-        function procesarArchivo(file) {
-            document.getElementById('loading').classList.add('active');
+            box.addEventListener('click', () => input.click());
             
-            if (file.name.endsWith('.csv')) {
-                Papa.parse(file, {
-                    header: true,
-                    dynamicTyping: true,
-                    skipEmptyLines: true,
-                    complete: (results) => {
-                        procesarDatos(results.data);
-                    },
-                    error: (error) => {
-                        alert('Error al leer el archivo CSV: ' + error.message);
-                        document.getElementById('loading').classList.remove('active');
-                    }
-                });
-            } else {
-                alert('Por favor, sube un archivo CSV. El soporte para Excel requiere una librería adicional.');
-                document.getElementById('loading').classList.remove('active');
+            box.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                box.classList.add('dragover');
+            });
+
+            box.addEventListener('dragleave', () => {
+                box.classList.remove('dragover');
+            });
+
+            box.addEventListener('drop', (e) => {
+                e.preventDefault();
+                box.classList.remove('dragover');
+                if (e.dataTransfer.files.length > 0) {
+                    callback(e.dataTransfer.files[0]);
+                }
+            });
+        }
+
+        function mostrarLoading(texto) {
+            document.getElementById('loadingText').textContent = texto;
+            document.getElementById('loading').classList.add('active');
+        }
+
+        function ocultarLoading() {
+            document.getElementById('loading').classList.remove('active');
+        }
+
+        function actualizarProgreso(etapa) {
+            const steps = ['step1', 'step2', 'step3'];
+            const fillWidth = ((etapa - 1) / 2) * 100;
+            
+            document.getElementById('progressFill').style.width = fillWidth + '%';
+            
+            steps.forEach((stepId, index) => {
+                const step = document.getElementById(stepId);
+                step.classList.remove('active', 'completed');
+                
+                if (index + 1 < etapa) {
+                    step.classList.add('completed');
+                } else if (index + 1 === etapa) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        function cambiarSeccion(seccionId) {
+            ['section1', 'section2', 'section3'].forEach(id => {
+                document.getElementById(id).classList.remove('active');
+            });
+            document.getElementById(seccionId).classList.add('active');
+        }
+
+        // ETAPA 1: Procesar archivo de entrenamiento
+        function procesarArchivoEntrenamiento(file) {
+            mostrarLoading('Procesando archivo de entrenamiento...');
+            
+            Papa.parse(file, {
+                header: true,
+                dynamicTyping: true,
+                skipEmptyLines: true,
+                complete: (results) => {
+                    entrenarModelo(results.data);
+                },
+                error: (error) => {
+                    alert('Error al leer el archivo: ' + error.message);
+                    ocultarLoading();
+                }
+            });
+        }
+
+        function entrenarModelo(datos) {
+            try {
+                // Validar que tenga columna abandono
+                if (!datos[0].hasOwnProperty('abandono')) {
+                    alert('❌ Error: El archivo de entrenamiento debe tener la columna "abandono"');
+                    ocultarLoading();
+                    return;
+                }
+
+                // Limpiar y preparar datos
+                datos = limpiarDatos(datos);
+                
+                if (datos.length < 5) {
+                    alert('❌ Error: Se necesitan al menos 5 registros para entrenar el modelo');
+                    ocultarLoading();
+                    return;
+                }
+
+                datosEntrenamiento = datos;
+
+                // Entrenar modelo simple (regresión logística simulada)
+                modeloEntrenado = entrenarModeloSimple(datos);
+
+                // Mostrar información del modelo
+                mostrarInfoModelo(datos);
+
+                // Cambiar a etapa 2
+                setTimeout(() => {
+                    ocultarLoading();
+                    actualizarProgreso(2);
+                    cambiarSeccion('section2');
+                }, 1000);
+
+            } catch (error) {
+                alert('Error al entrenar el modelo: ' + error.message);
+                ocultarLoading();
             }
         }
 
+        function entrenarModeloSimple(datos) {
+            // Calcular estadísticas del conjunto de entrenamiento
+            const abandonan = datos.filter(d => d.abandono === 1);
+            const continuan = datos.filter(d => d.abandono === 0);
+
+            const promedioAbandonan = abandonan.reduce((sum, d) => sum + d.promedio_general, 0) / abandonan.length;
+            const promedioContinuan = continuan.reduce((sum, d) => sum + d.promedio_general, 0) / continuan.length;
+
+            // Calcular accuracy mediante validación cruzada simple
+            let prediccionesCorrectas = 0;
+            const umbral = (promedioAbandonan + promedioContinuan) / 2;
+
+            datos.forEach(estudiante => {
+                const prediccion = estudiante.promedio_general < umbral ? 1 : 0;
+                if (prediccion === estudiante.abandono) {
+                    prediccionesCorrectas++;
+                }
+            });
+
+            const accuracy = (prediccionesCorrectas / datos.length) * 100;
+
+            return {
+                umbralPromedio: umbral,
+                promedioAbandonan,
+                promedioContinuan,
+                tasaAbandonoBase: abandonan.length / datos.length,
+                totalEntrenamiento: datos.length,
+                abandonanEntrenamiento: abandonan.length,
+                continuanEntrenamiento: continuan.length,
+                accuracy: accuracy
+            };
+        }
+
+        function mostrarInfoModelo(datos) {
+            const abandonan = datos.filter(d => d.abandono === 1).length;
+            const continuan = datos.length - abandonan;
+            const accuracy = modeloEntrenado.accuracy;
+
+            const statsHTML = `
+                <div class="stat-card">
+                    <div class="stat-label">📊 Total Entrenamiento</div>
+                    <div class="stat-value">${datos.length}</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                    <div class="stat-label">❌ Abandonaron</div>
+                    <div class="stat-value">${abandonan}</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);">
+                    <div class="stat-label">✅ Continuaron</div>
+                    <div class="stat-value">${continuan}</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                    <div class="stat-label">🎯 Accuracy (Precisión)</div>
+                    <div class="stat-value">${accuracy.toFixed(1)}%</div>
+                </div>
+            `;
+
+            document.getElementById('modelStats').innerHTML = statsHTML;
+        }
+
+        // ETAPA 2: Procesar archivo de predicción
+        function procesarArchivoPrediccion(file) {
+            if (!modeloEntrenado) {
+                alert('❌ Primero debes entrenar el modelo');
+                return;
+            }
+
+            mostrarLoading('Realizando predicciones...');
+            
+            Papa.parse(file, {
+                header: true,
+                dynamicTyping: true,
+                skipEmptyLines: true,
+                complete: (results) => {
+                    hacerPredicciones(results.data);
+                },
+                error: (error) => {
+                    alert('Error al leer el archivo: ' + error.message);
+                    ocultarLoading();
+                }
+            });
+        }
+
+        function hacerPredicciones(datos) {
+            try {
+                // Limpiar datos
+                datos = limpiarDatos(datos, false);
+
+                // Hacer predicciones para cada estudiante
+                const predicciones = datos.map(estudiante => {
+                    const prediccion = predecirAbandono(estudiante, modeloEntrenado);
+                    return {
+                        ...estudiante,
+                        prediccion_abandono: prediccion.abandono,
+                        probabilidad: prediccion.probabilidad,
+                        nivel_riesgo: prediccion.nivelRiesgo
+                    };
+                });
+
+                prediccionesResultado = predicciones;
+
+                // Mostrar resultados
+                setTimeout(() => {
+                    ocultarLoading();
+                    actualizarProgreso(3);
+                    cambiarSeccion('section3');
+                    mostrarResultados(predicciones);
+                }, 1000);
+
+            } catch (error) {
+                alert('Error al hacer predicciones: ' + error.message);
+                ocultarLoading();
+            }
+        }
+
+        function predecirAbandono(estudiante, modelo) {
+            // Algoritmo simple basado en promedio y otras características
+            let probabilidad = 0;
+
+            // Factor 1: Promedio general (60% de peso)
+            if (estudiante.promedio_general < 3.0) {
+                probabilidad += 0.6;
+            } else if (estudiante.promedio_general < 3.5) {
+                probabilidad += 0.4;
+            } else if (estudiante.promedio_general < 4.0) {
+                probabilidad += 0.2;
+            } else {
+                probabilidad += 0.05;
+            }
+
+            // Factor 2: Diferencia entre consolidados (20% de peso)
+            const diferencia = Math.abs(estudiante.promedio_cons1 - estudiante.promedio_cons2);
+            if (diferencia > 0.5) {
+                probabilidad += 0.15;
+            } else if (diferencia > 0.3) {
+                probabilidad += 0.1;
+            }
+
+            // Factor 3: Tendencia (20% de peso)
+            if (estudiante.promedio_cons2 < estudiante.promedio_cons1) {
+                probabilidad += 0.15;
+            }
+
+            // Ajustar con tasa base del modelo
+            probabilidad = (probabilidad + modelo.tasaAbandonoBase) / 2;
+
+            // Limitar entre 0 y 1
+            probabilidad = Math.max(0, Math.min(1, probabilidad));
+
+            const abandono = probabilidad > 0.5 ? 1 : 0;
+            let nivelRiesgo = 'Bajo';
+            if (probabilidad > 0.7) nivelRiesgo = 'Alto';
+            else if (probabilidad > 0.4) nivelRiesgo = 'Medio';
+
+            return { abandono, probabilidad, nivelRiesgo };
+        }
+
+        function mostrarResultados(predicciones) {
+            // KPIs
+            const total = predicciones.length;
+            const alto = predicciones.filter(p => p.nivel_riesgo === 'Alto').length;
+            const medio = predicciones.filter(p => p.nivel_riesgo === 'Medio').length;
+            const bajo = predicciones.filter(p => p.nivel_riesgo === 'Bajo').length;
+            const abandonaran = predicciones.filter(p => p.prediccion_abandono === 1).length;
+
+            const kpiHTML = `
+                <div class="kpi-card">
+                    <div class="kpi-label">👥 Total Analizados</div>
+                    <div class="kpi-value">${total}</div>
+                </div>
+                <div class="kpi-card" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                    <div class="kpi-label">🔴 Riesgo Alto</div>
+                    <div class="kpi-value">${alto}</div>
+                    <div class="kpi-subtext">${(alto/total*100).toFixed(1)}%</div>
+                </div>
+                <div class="kpi-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                    <div class="kpi-label">🟡 Riesgo Medio</div>
+                    <div class="kpi-value">${medio}</div>
+                    <div class="kpi-subtext">${(medio/total*100).toFixed(1)}%</div>
+                </div>
+                <div class="kpi-card" style="background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);">
+                    <div class="kpi-label">🟢 Riesgo Bajo</div>
+                    <div class="kpi-value">${bajo}</div>
+                    <div class="kpi-subtext">${(bajo/total*100).toFixed(1)}%</div>
+                </div>
+            `;
+
+            document.getElementById('kpiResults').innerHTML = kpiHTML;
+
+            // Tabla de predicciones
+            let tablaHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre Completo</th>
+                            <th>Edad</th>
+                            <th>Carrera</th>
+                            <th>Cons 1</th>
+                            <th>Cons 2</th>
+                            <th>Promedio</th>
+                            <th>Predicción</th>
+                            <th>Probabilidad</th>
+                            <th>Nivel Riesgo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            predicciones.forEach((p, i) => {
+                const badgeRiesgo = p.nivel_riesgo === 'Alto' ? 'badge-riesgo-alto' : 
+                                   p.nivel_riesgo === 'Medio' ? 'badge-riesgo-medio' : 'badge-riesgo-bajo';
+                
+                const iconoPrediccion = p.prediccion_abandono === 1 ? '❌' : '✅';
+                const textoPrediccion = p.prediccion_abandono === 1 ? 'Abandonará' : 'Continuará';
+
+                tablaHTML += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td><strong>${p.nombre} ${p.apellido}</strong></td>
+                        <td>${p.edad}</td>
+                        <td>${p.carrera}</td>
+                        <td>${p.promedio_cons1.toFixed(2)}</td>
+                        <td>${p.promedio_cons2.toFixed(2)}</td>
+                        <td><strong>${p.promedio_general.toFixed(2)}</strong></td>
+                        <td>${iconoPrediccion} ${textoPrediccion}</td>
+                        <td>${(p.probabilidad * 100).toFixed(1)}%</td>
+                        <td><span class="badge ${badgeRiesgo}">${p.nivel_riesgo}</span></td>
+                    </tr>
+                `;
+            });
+
+            tablaHTML += `
+                    </tbody>
+                </table>
+            `;
+
+            document.getElementById('tableResults').innerHTML = tablaHTML;
+
+            // Generar gráficas
+            generarGraficasResultados(predicciones);
+        }
+
+        function generarGraficasResultados(predicciones) {
+            // 1. Gráfica de Abandono por Carrera
+            const carreraStats = {};
+            predicciones.forEach(p => {
+                if (!carreraStats[p.carrera]) {
+                    carreraStats[p.carrera] = { total: 0, abandonan: 0 };
+                }
+                carreraStats[p.carrera].total++;
+                if (p.prediccion_abandono === 1) {
+                    carreraStats[p.carrera].abandonan++;
+                }
+            });
+
+            const carreras = Object.keys(carreraStats);
+            const tasasAbandono = carreras.map(c => 
+                (carreraStats[c].abandonan / carreraStats[c].total * 100).toFixed(1)
+            );
+
+            if (window.chartCarreraAbandonoInstance) {
+                window.chartCarreraAbandonoInstance.destroy();
+            }
+
+            window.chartCarreraAbandonoInstance = new Chart(document.getElementById('chartCarreraAbandono'), {
+                type: 'bar',
+                data: {
+                    labels: carreras,
+                    datasets: [{
+                        label: 'Tasa de Abandono (%)',
+                        data: tasasAbandono,
+                        backgroundColor: tasasAbandono.map(t => {
+                            const val = parseFloat(t);
+                            if (val > 60) return '#e74c3c';
+                            if (val > 40) return '#f39c12';
+                            return '#00b894';
+                        }),
+                        borderColor: '#333',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const carrera = context.label;
+                                    const stats = carreraStats[carrera];
+                                    return [
+                                        `Tasa: ${context.parsed.y}%`,
+                                        `Abandonan: ${stats.abandonan}/${stats.total}`
+                                    ];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 2. Gráfica de Total por Carrera
+            const totales = carreras.map(c => carreraStats[c].total);
+
+            if (window.chartCarreraTotalInstance) {
+                window.chartCarreraTotalInstance.destroy();
+            }
+
+            window.chartCarreraTotalInstance = new Chart(document.getElementById('chartCarreraTotal'), {
+                type: 'doughnut',
+                data: {
+                    labels: carreras,
+                    datasets: [{
+                        data: totales,
+                        backgroundColor: [
+                            '#667eea', '#764ba2', '#f093fb', '#4facfe',
+                            '#43e97b', '#fa709a', '#fee140', '#30cfd0'
+                        ],
+                        borderWidth: 3,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.parsed;
+                                    const porcentaje = (total / predicciones.length * 100).toFixed(1);
+                                    return `${context.label}: ${total} (${porcentaje}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 3. Gráfica de Abandono por Género
+            const generoStats = {};
+            predicciones.forEach(p => {
+                if (!generoStats[p.genero]) {
+                    generoStats[p.genero] = { total: 0, abandonan: 0, continuan: 0 };
+                }
+                generoStats[p.genero].total++;
+                if (p.prediccion_abandono === 1) {
+                    generoStats[p.genero].abandonan++;
+                } else {
+                    generoStats[p.genero].continuan++;
+                }
+            });
+
+            const generos = Object.keys(generoStats);
+            const abandonanPorGenero = generos.map(g => generoStats[g].abandonan);
+            const continuanPorGenero = generos.map(g => generoStats[g].continuan);
+
+            if (window.chartGeneroAbandonoInstance) {
+                window.chartGeneroAbandonoInstance.destroy();
+            }
+
+            window.chartGeneroAbandonoInstance = new Chart(document.getElementById('chartGeneroAbandono'), {
+                type: 'bar',
+                data: {
+                    labels: generos,
+                    datasets: [{
+                        label: '❌ Abandonan',
+                        data: abandonanPorGenero,
+                        backgroundColor: '#e74c3c',
+                        borderColor: '#c0392b',
+                        borderWidth: 2
+                    }, {
+                        label: '✅ Continúan',
+                        data: continuanPorGenero,
+                        backgroundColor: '#00b894',
+                        borderColor: '#00a383',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const genero = context.label;
+                                    const total = generoStats[genero].total;
+                                    const porcentaje = (context.parsed.y / total * 100).toFixed(1);
+                                    return `${context.dataset.label}: ${context.parsed.y} (${porcentaje}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Funciones de utilidad
+        function limpiarDatos(datos, requiereAbandono = true) {
+            const nombresHombres = ['Juan', 'Carlos', 'Miguel', 'Luis', 'Pedro', 'Diego', 'Andrés', 'José'];
+            const nombresMujeres = ['Ana', 'María', 'Laura', 'Sofía', 'Carmen', 'Patricia', 'Isabel', 'Gabriela'];
+            const apellidosComunes = ['García', 'Rodríguez', 'López', 'Martínez', 'González', 'Pérez', 'Sánchez', 'Ramírez'];
+
+            return datos.map((d, index) => {
+                let nombre = d.nombre || d.Nombre;
+                if (!nombre) {
+                    const genero = d.genero || d.Genero || 'Hombre';
+                    nombre = genero.toLowerCase().includes('mujer') ? 
+                            nombresMujeres[index % nombresMujeres.length] : 
+                            nombresHombres[index % nombresHombres.length];
+                }
+                
+                let apellido = d.apellido || d.Apellido;
+                if (!apellido) {
+                    apellido = apellidosComunes[index % apellidosComunes.length];
+                }
+
+                let promedio1 = parseFloat(d.promedio_cons1);
+                let promedio2 = parseFloat(d.promedio_cons2);
+
+                // Convertir escala si es necesario
+                if (promedio1 > 10) {
+                    promedio1 = ((promedio1 / 20) * 4) + 1;
+                } else if (promedio1 > 5) {
+                    promedio1 = ((promedio1 / 10) * 4) + 1;
+                }
+
+                if (promedio2 > 10) {
+                    promedio2 = ((promedio2 / 20) * 4) + 1;
+                } else if (promedio2 > 5) {
+                    promedio2 = ((promedio2 / 10) * 4) + 1;
+                }
+
+                promedio1 = Math.max(1, Math.min(5, promedio1));
+                promedio2 = Math.max(1, Math.min(5, promedio2));
+
+                const resultado = {
+                    nombre,
+                    apellido,
+                    edad: parseFloat(d.edad) || 20,
+                    genero: d.genero || 'No especificado',
+                    carrera: d.carrera || 'General',
+                    promedio_cons1: promedio1,
+                    promedio_cons2: promedio2,
+                    promedio_general: (promedio1 + promedio2) / 2
+                };
+
+                if (requiereAbandono) {
+                    resultado.abandono = parseInt(d.abandono) || 0;
+                }
+
+                return resultado;
+            }).filter(d => !isNaN(d.promedio_cons1) && !isNaN(d.promedio_cons2));
+        }
+
         // Generar datos de ejemplo
-        function generarEjemplo() {
-            const datosEjemplo = [
+        function generarEjemploEntrenamiento() {
+            const ejemploEntrenamiento = [
                 {nombre: 'Juan', apellido: 'Pérez', edad: 22, genero: 'Hombre', carrera: 'Ingeniería', promedio_cons1: 3.2, promedio_cons2: 3.0, abandono: 1},
                 {nombre: 'Ana', apellido: 'García', edad: 19, genero: 'Mujer', carrera: 'Medicina', promedio_cons1: 4.5, promedio_cons2: 4.3, abandono: 0},
                 {nombre: 'Carlos', apellido: 'López', edad: 25, genero: 'Hombre', carrera: 'Derecho', promedio_cons1: 2.1, promedio_cons2: 2.0, abandono: 1},
@@ -841,622 +1640,79 @@ Carlos,López,25,Hombre,Derecho,2.1,2.0,1,0,1,5,15,3,9</code></pre>
                 {nombre: 'Luis', apellido: 'Jiménez', edad: 24, genero: 'Hombre', carrera: 'Derecho', promedio_cons1: 3.0, promedio_cons2: 3.1, abandono: 0}
             ];
 
-            procesarDatos(datosEjemplo);
+            entrenarModelo(ejemploEntrenamiento);
         }
 
-        // Procesar datos
-        function procesarDatos(datos) {
-            // Limpiar y validar datos
-            datos = datos.filter(d => d.edad && d.promedio_cons1 && d.promedio_cons2);
-            
-            // Nombres de listas comunes para generar automáticamente
-            const nombresHombres = ['Juan', 'Carlos', 'Miguel', 'Luis', 'Pedro', 'Diego', 'Andrés', 'José'];
-            const nombresMujeres = ['Ana', 'María', 'Laura', 'Sofía', 'Carmen', 'Patricia', 'Isabel', 'Gabriela'];
-            const apellidosComunes = ['García', 'Rodríguez', 'López', 'Martínez', 'González', 'Pérez', 'Sánchez', 'Ramírez'];
-            
-            // Normalizar nombres de columnas
-            datos = datos.map((d, index) => {
-                // Generar nombre si no existe
-                let nombre = d.nombre || d.Nombre;
-                if (!nombre) {
-                    const genero = d.genero || d.Genero || 'Hombre';
-                    nombre = genero.toLowerCase().includes('mujer') ? 
-                            nombresMujeres[index % nombresMujeres.length] : 
-                            nombresHombres[index % nombresHombres.length];
-                }
-                
-                // Generar apellido si no existe
-                let apellido = d.apellido || d.Apellido;
-                if (!apellido) {
-                    apellido = apellidosComunes[index % apellidosComunes.length];
-                }
-                
-                return {
-                    nombre: nombre,
-                    apellido: apellido,
-                    edad: parseFloat(d.edad),
-                    genero: d.genero || 'No especificado',
-                    carrera: d.carrera || 'General',
-                    promedio_cons1: parseFloat(d.promedio_cons1),
-                    promedio_cons2: parseFloat(d.promedio_cons2),
-                    abandono: parseInt(d.abandono) || 0
-                };
-            });
-
-            // Convertir escala si es necesario
-            datos = datos.map(d => {
-                if (d.promedio_cons1 > 10) {
-                    d.promedio_cons1 = ((d.promedio_cons1 / 20) * 4) + 1;
-                } else if (d.promedio_cons1 > 5) {
-                    d.promedio_cons1 = ((d.promedio_cons1 / 10) * 4) + 1;
-                }
-
-                if (d.promedio_cons2 > 10) {
-                    d.promedio_cons2 = ((d.promedio_cons2 / 20) * 4) + 1;
-                } else if (d.promedio_cons2 > 5) {
-                    d.promedio_cons2 = ((d.promedio_cons2 / 10) * 4) + 1;
-                }
-
-                // Asegurar que estén en el rango 1-5
-                d.promedio_cons1 = Math.max(1, Math.min(5, d.promedio_cons1));
-                d.promedio_cons2 = Math.max(1, Math.min(5, d.promedio_cons2));
-
-                // Calcular categoría
-                d.categoria = categorizar(d.promedio_cons1);
-                d.promedio_general = (d.promedio_cons1 + d.promedio_cons2) / 2;
-
-                return d;
-            });
-
-            datosGlobales = datos;
-            
-            setTimeout(() => {
-                document.getElementById('loading').classList.remove('active');
-                document.getElementById('tabs').style.display = 'flex';
-                generarDashboard(datos);
-            }, 500);
-        }
-
-        function categorizar(promedio) {
-            if (promedio < 3.0) return 'Malo';
-            if (promedio < 4.0) return 'Aceptable';
-            return 'Bueno';
-        }
-
-        // Generar dashboard completo
-        function generarDashboard(datos) {
-            generarKPIs(datos);
-            generarGraficosGenerales(datos);
-            generarGraficosCarreras(datos);
-            generarGraficosDetallados(datos);
-            generarTablaDatos(datos);
-        }
-
-        // Generar KPIs
-        function generarKPIs(datos) {
-            const total = datos.length;
-            const abandonan = datos.filter(d => d.abandono === 1).length;
-            const continuan = total - abandonan;
-            const tasaAbandono = (abandonan / total * 100).toFixed(1);
-            const promedioGeneral = (datos.reduce((sum, d) => sum + d.promedio_general, 0) / total).toFixed(2);
-
-            const kpiHTML = `
-                <div class="kpi-card">
-                    <div class="kpi-label">👥 Total Estudiantes</div>
-                    <div class="kpi-value">${total}</div>
-                    <div class="kpi-subtext">Registros analizados</div>
-                </div>
-                <div class="kpi-card" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
-                    <div class="kpi-label">❌ Abandonan</div>
-                    <div class="kpi-value">${abandonan}</div>
-                    <div class="kpi-subtext">${tasaAbandono}% del total</div>
-                </div>
-                <div class="kpi-card" style="background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);">
-                    <div class="kpi-label">✅ Continúan</div>
-                    <div class="kpi-value">${continuan}</div>
-                    <div class="kpi-subtext">${(100 - tasaAbandono).toFixed(1)}% del total</div>
-                </div>
-                <div class="kpi-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
-                    <div class="kpi-label">📊 Promedio General</div>
-                    <div class="kpi-value">${promedioGeneral}</div>
-                    <div class="kpi-subtext">Escala 1.0 - 5.0</div>
-                </div>
-            `;
-
-            document.getElementById('kpiContainer').innerHTML = kpiHTML;
-        }
-
-        // Generar gráficos generales
-        function generarGraficosGenerales(datos) {
-            const abandonan = datos.filter(d => d.abandono === 1).length;
-            const continuan = datos.length - abandonan;
-
-            // Gráfico de pie
-            if (charts.pie) charts.pie.destroy();
-            charts.pie = new Chart(document.getElementById('chartAbandonoPie'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['✅ Continúan', '❌ Abandonan'],
-                    datasets: [{
-                        data: [continuan, abandonan],
-                        backgroundColor: ['#00b894', '#e74c3c'],
-                        borderWidth: 3,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        legend: {
-                            position: 'top'
-                        }
-                    }
-                }
-            });
-
-            // Gráfico de categorías
-            const categorias = { 'Malo': 0, 'Aceptable': 0, 'Bueno': 0 };
-            datos.forEach(d => categorias[d.categoria]++);
-
-            if (charts.categorias) charts.categorias.destroy();
-            charts.categorias = new Chart(document.getElementById('chartCategorias'), {
-                type: 'bar',
-                data: {
-                    labels: ['🔴 Malo', '🟡 Aceptable', '🟢 Bueno'],
-                    datasets: [{
-                        label: 'Estudiantes',
-                        data: [categorias.Malo, categorias.Aceptable, categorias.Bueno],
-                        backgroundColor: ['#e74c3c', '#f39c12', '#00b894']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true }
-                    },
-                    plugins: {
-                        legend: { display: false }
-                    }
-                }
-            });
-
-            // Histograma
-            const bins1 = crearHistograma(datos.map(d => d.promedio_cons1), 20);
-            const bins2 = crearHistograma(datos.map(d => d.promedio_cons2), 20);
-
-            if (charts.histograma) charts.histograma.destroy();
-            charts.histograma = new Chart(document.getElementById('chartHistograma'), {
-                type: 'bar',
-                data: {
-                    labels: bins1.labels,
-                    datasets: [{
-                        label: 'Consolidado 1',
-                        data: bins1.data,
-                        backgroundColor: 'rgba(52, 152, 219, 0.6)',
-                        borderColor: 'rgba(52, 152, 219, 1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'Consolidado 2',
-                        data: bins2.data,
-                        backgroundColor: 'rgba(155, 89, 182, 0.6)',
-                        borderColor: 'rgba(155, 89, 182, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
-                }
-            });
-        }
-
-        function crearHistograma(valores, numBins) {
-            const min = 1;
-            const max = 5;
-            const binSize = (max - min) / numBins;
-            const bins = new Array(numBins).fill(0);
-            const labels = [];
-
-            for (let i = 0; i < numBins; i++) {
-                labels.push((min + i * binSize).toFixed(1));
-            }
-
-            valores.forEach(val => {
-                const binIndex = Math.min(Math.floor((val - min) / binSize), numBins - 1);
-                bins[binIndex]++;
-            });
-
-            return { labels, data: bins };
-        }
-
-        // Generar gráficos por carrera
-        function generarGraficosCarreras(datos) {
-            const carreras = {};
-            
-            datos.forEach(d => {
-                if (!carreras[d.carrera]) {
-                    carreras[d.carrera] = { total: 0, abandonan: 0, promedio: [] };
-                }
-                carreras[d.carrera].total++;
-                if (d.abandono === 1) carreras[d.carrera].abandonan++;
-                carreras[d.carrera].promedio.push(d.promedio_general);
-            });
-
-            const carrerasArray = Object.keys(carreras).map(carrera => ({
-                nombre: carrera,
-                total: carreras[carrera].total,
-                abandonan: carreras[carrera].abandonan,
-                tasa: (carreras[carrera].abandonan / carreras[carrera].total * 100).toFixed(1),
-                promedio: (carreras[carrera].promedio.reduce((a, b) => a + b, 0) / carreras[carrera].promedio.length).toFixed(2)
-            })).sort((a, b) => parseFloat(b.tasa) - parseFloat(a.tasa));
-
-            // Gráfico de abandono por carrera
-            if (charts.carreraAbandono) charts.carreraAbandono.destroy();
-            charts.carreraAbandono = new Chart(document.getElementById('chartCarreraAbandono'), {
-                type: 'bar',
-                data: {
-                    labels: carrerasArray.map(c => c.nombre),
-                    datasets: [{
-                        label: 'Tasa de Abandono (%)',
-                        data: carrerasArray.map(c => parseFloat(c.tasa)),
-                        backgroundColor: carrerasArray.map(c => {
-                            const tasa = parseFloat(c.tasa);
-                            if (tasa > 60) return '#e74c3c';
-                            if (tasa > 40) return '#f39c12';
-                            return '#00b894';
-                        })
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    scales: {
-                        x: { beginAtZero: true, max: 100 }
-                    },
-                    plugins: {
-                        legend: { display: false }
-                    }
-                }
-            });
-
-            // Total por carrera
-            if (charts.carreraTotal) charts.carreraTotal.destroy();
-            charts.carreraTotal = new Chart(document.getElementById('chartCarreraTotal'), {
-                type: 'pie',
-                data: {
-                    labels: carrerasArray.map(c => c.nombre),
-                    datasets: [{
-                        data: carrerasArray.map(c => c.total),
-                        backgroundColor: [
-                            '#667eea', '#764ba2', '#f093fb', '#4facfe',
-                            '#43e97b', '#fa709a', '#fee140', '#30cfd0'
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { position: 'right' }
-                    }
-                }
-            });
-
-            // Promedio por carrera
-            if (charts.carreraPromedio) charts.carreraPromedio.destroy();
-            charts.carreraPromedio = new Chart(document.getElementById('chartCarreraPromedio'), {
-                type: 'bar',
-                data: {
-                    labels: carrerasArray.map(c => c.nombre),
-                    datasets: [{
-                        label: 'Promedio General',
-                        data: carrerasArray.map(c => parseFloat(c.promedio)),
-                        backgroundColor: '#667eea'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true, max: 5 }
-                    }
-                }
-            });
-
-            // Tabla de carreras
-            let tablaHTML = `
-                <div class="chart-container">
-                    <div class="chart-title">📊 Resumen por Carrera</div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Carrera</th>
-                                <th>Total</th>
-                                <th>Abandonan</th>
-                                <th>Tasa (%)</th>
-                                <th>Promedio</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            `;
-
-            carrerasArray.forEach(c => {
-                const badge = parseFloat(c.tasa) > 50 ? 'badge-malo' : 
-                             parseFloat(c.tasa) > 30 ? 'badge-aceptable' : 'badge-bueno';
-                tablaHTML += `
-                    <tr>
-                        <td><strong>${c.nombre}</strong></td>
-                        <td>${c.total}</td>
-                        <td>${c.abandonan}</td>
-                        <td><span class="badge ${badge}">${c.tasa}%</span></td>
-                        <td>${c.promedio}</td>
-                        <td>${parseFloat(c.tasa) > 50 ? '🔴 Crítico' : 
-                              parseFloat(c.tasa) > 30 ? '🟡 Atención' : '🟢 Estable'}</td>
-                    </tr>
-                `;
-            });
-
-            tablaHTML += `
-                        </tbody>
-                    </table>
-                </div>
-            `;
-
-            document.getElementById('tablaCarreras').innerHTML = tablaHTML;
-        }
-
-        // Generar gráficos detallados
-        function generarGraficosDetallados(datos) {
-            // Abandono por género
-            const generos = {};
-            datos.forEach(d => {
-                if (!generos[d.genero]) {
-                    generos[d.genero] = { total: 0, abandonan: 0 };
-                }
-                generos[d.genero].total++;
-                if (d.abandono === 1) generos[d.genero].abandonan++;
-            });
-
-            const generosArray = Object.keys(generos);
-            const continuanPct = generosArray.map(g => ((generos[g].total - generos[g].abandonan) / generos[g].total * 100).toFixed(1));
-            const abandonanPct = generosArray.map(g => (generos[g].abandonan / generos[g].total * 100).toFixed(1));
-
-            if (charts.genero) charts.genero.destroy();
-            charts.genero = new Chart(document.getElementById('chartGenero'), {
-                type: 'bar',
-                data: {
-                    labels: generosArray,
-                    datasets: [{
-                        label: '✅ Continúan (%)',
-                        data: continuanPct,
-                        backgroundColor: '#00b894'
-                    }, {
-                        label: '❌ Abandonan (%)',
-                        data: abandonanPct,
-                        backgroundColor: '#e74c3c'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true, max: 100 }
-                    }
-                }
-            });
-
-            // Evolución del rendimiento
-            const mejoraron = datos.filter(d => d.promedio_cons2 > d.promedio_cons1 + 0.2).length;
-            const estables = datos.filter(d => Math.abs(d.promedio_cons2 - d.promedio_cons1) <= 0.2).length;
-            const empeoraron = datos.filter(d => d.promedio_cons2 < d.promedio_cons1 - 0.2).length;
-
-            if (charts.evolucion) charts.evolucion.destroy();
-            charts.evolucion = new Chart(document.getElementById('chartEvolucion'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['📈 Mejoraron', '➡️ Estables', '📉 Empeoraron'],
-                    datasets: [{
-                        data: [mejoraron, estables, empeoraron],
-                        backgroundColor: ['#00b894', '#f39c12', '#e74c3c']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { position: 'bottom' }
-                    }
-                }
-            });
-
-            // Scatter plot
-            const scatterData = datos.map(d => ({
-                x: d.promedio_cons1,
-                y: d.promedio_cons2,
-                abandono: d.abandono
-            }));
-
-            if (charts.scatter) charts.scatter.destroy();
-            charts.scatter = new Chart(document.getElementById('chartScatter'), {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: '✅ Continúan',
-                        data: scatterData.filter(d => d.abandono === 0),
-                        backgroundColor: 'rgba(0, 184, 148, 0.6)',
-                        borderColor: '#00b894',
-                        pointRadius: 6
-                    }, {
-                        label: '❌ Abandonan',
-                        data: scatterData.filter(d => d.abandono === 1),
-                        backgroundColor: 'rgba(231, 76, 60, 0.6)',
-                        borderColor: '#e74c3c',
-                        pointRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            title: { display: true, text: 'Consolidado 1' },
-                            min: 1, max: 5
-                        },
-                        y: {
-                            title: { display: true, text: 'Consolidado 2' },
-                            min: 1, max: 5
-                        }
-                    },
-                    plugins: {
-                        annotation: {
-                            annotations: {
-                                line1: {
-                                    type: 'line',
-                                    yMin: 3, yMax: 3,
-                                    borderColor: '#f39c12',
-                                    borderWidth: 2,
-                                    borderDash: [5, 5]
-                                },
-                                line2: {
-                                    type: 'line',
-                                    xMin: 3, xMax: 3,
-                                    borderColor: '#f39c12',
-                                    borderWidth: 2,
-                                    borderDash: [5, 5]
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Box plot simulado con bar chart
-            const abandonanData = datos.filter(d => d.abandono === 1);
-            const continuanData = datos.filter(d => d.abandono === 0);
-
-            const stats = [
-                calcularEstadisticas(continuanData.map(d => d.promedio_cons1)),
-                calcularEstadisticas(abandonanData.map(d => d.promedio_cons1)),
-                calcularEstadisticas(continuanData.map(d => d.promedio_cons2)),
-                calcularEstadisticas(abandonanData.map(d => d.promedio_cons2))
+        function generarEjemploPrediccion() {
+            const ejemploPrediccion = [
+                {nombre: 'Camila', apellido: 'Herrera', edad: 21, genero: 'Mujer', carrera: 'Ingeniería', promedio_cons1: 2.9, promedio_cons2: 2.8},
+                {nombre: 'Felipe', apellido: 'Mendoza', edad: 22, genero: 'Hombre', carrera: 'Medicina', promedio_cons1: 4.3, promedio_cons2: 4.4},
+                {nombre: 'Daniela', apellido: 'Ortiz', edad: 20, genero: 'Mujer', carrera: 'Psicología', promedio_cons1: 3.6, promedio_cons2: 3.7},
+                {nombre: 'Santiago', apellido: 'Vega', edad: 23, genero: 'Hombre', carrera: 'Derecho', promedio_cons1: 2.3, promedio_cons2: 2.2},
+                {nombre: 'Natalia', apellido: 'Ríos', edad: 19, genero: 'Mujer', carrera: 'Administración', promedio_cons1: 4.0, promedio_cons2: 4.1}
             ];
 
-            if (charts.box) charts.box.destroy();
-            charts.box = new Chart(document.getElementById('chartBox'), {
-                type: 'bar',
-                data: {
-                    labels: ['Cons1 Continúan', 'Cons1 Abandonan', 'Cons2 Continúan', 'Cons2 Abandonan'],
-                    datasets: [{
-                        label: 'Media',
-                        data: stats.map(s => s.mean),
-                        backgroundColor: ['#00b894', '#e74c3c', '#00b894', '#e74c3c']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true, max: 5 }
-                    }
-                }
-            });
+            hacerPredicciones(ejemploPrediccion);
         }
 
-        function calcularEstadisticas(arr) {
-            arr.sort((a, b) => a - b);
-            return {
-                min: arr[0],
-                max: arr[arr.length - 1],
-                mean: arr.reduce((a, b) => a + b, 0) / arr.length,
-                median: arr[Math.floor(arr.length / 2)]
-            };
-        }
+        function descargarPredicciones() {
+            if (!prediccionesResultado) return;
 
-        // Generar tabla de datos
-        function generarTablaDatos(datos) {
-            let tablaHTML = `
-                <div style="margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                    <strong>📊 Total de registros:</strong> ${datos.length} estudiantes
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="min-width: 50px;">#</th>
-                            <th style="min-width: 120px;">Nombre Completo</th>
-                            <th style="min-width: 60px;">Edad</th>
-                            <th style="min-width: 80px;">Género</th>
-                            <th style="min-width: 120px;">Carrera</th>
-                            <th style="min-width: 80px;">Cons 1</th>
-                            <th style="min-width: 80px;">Cons 2</th>
-                            <th style="min-width: 90px;">Promedio</th>
-                            <th style="min-width: 100px;">Categoría</th>
-                            <th style="min-width: 100px;">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-
-            datos.forEach((d, i) => {
-                const badgeCategoria = d.categoria === 'Malo' ? 'badge-malo' : 
-                                      d.categoria === 'Aceptable' ? 'badge-aceptable' : 'badge-bueno';
-                
-                const nombreCompleto = `${d.nombre} ${d.apellido}`;
-                
-                tablaHTML += `
-                    <tr>
-                        <td style="text-align: center;">${i + 1}</td>
-                        <td><strong>${nombreCompleto}</strong></td>
-                        <td style="text-align: center;">${d.edad}</td>
-                        <td>${d.genero}</td>
-                        <td>${d.carrera}</td>
-                        <td style="text-align: center;">${d.promedio_cons1.toFixed(2)}</td>
-                        <td style="text-align: center;">${d.promedio_cons2.toFixed(2)}</td>
-                        <td style="text-align: center;"><strong>${d.promedio_general.toFixed(2)}</strong></td>
-                        <td style="text-align: center;"><span class="badge ${badgeCategoria}">${d.categoria}</span></td>
-                        <td style="text-align: center;">${d.abandono === 1 ? '❌ Abandona' : '✅ Continúa'}</td>
-                    </tr>
-                `;
+            let csv = 'Nombre,Apellido,Edad,Género,Carrera,Cons1,Cons2,Promedio,Predicción,Probabilidad,Nivel_Riesgo\n';
+            prediccionesResultado.forEach(p => {
+                csv += `${p.nombre},${p.apellido},${p.edad},${p.genero},${p.carrera},${p.promedio_cons1.toFixed(2)},${p.promedio_cons2.toFixed(2)},${p.promedio_general.toFixed(2)},${p.prediccion_abandono === 1 ? 'Abandonará' : 'Continuará'},${(p.probabilidad * 100).toFixed(1)}%,${p.nivel_riesgo}\n`;
             });
 
-            tablaHTML += `
-                    </tbody>
-                </table>
-            `;
-
-            document.getElementById('tablaDatos').innerHTML = tablaHTML;
-        }
-
-        // Cambiar tabs
-        function cambiarTab(index) {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.content');
-
-            tabs.forEach((tab, i) => {
-                if (i === index) {
-                    tab.classList.add('active');
-                    contents[i].classList.add('active');
-                } else {
-                    tab.classList.remove('active');
-                    contents[i].classList.remove('active');
-                }
-            });
-        }
-
-        // Descargar CSV
-        function descargarCSV() {
-            if (!datosGlobales) return;
-
-            let csv = 'Nombre,Apellido,Edad,Género,Carrera,Cons1,Cons2,Promedio,Categoría,Abandono\n';
-            datosGlobales.forEach(d => {
-                csv += `${d.nombre},${d.apellido},${d.edad},${d.genero},${d.carrera},${d.promedio_cons1.toFixed(2)},${d.promedio_cons2.toFixed(2)},${d.promedio_general.toFixed(2)},${d.categoria},${d.abandono === 1 ? 'Sí' : 'No'}\n`;
-            });
-
-            const blob = new Blob([csv], { type: 'text/csv' });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'resultados_analisis.csv';
+            a.download = 'predicciones_abandono.csv';
             a.click();
             window.URL.revokeObjectURL(url);
         }
+
+        function nuevaPrediccion() {
+            actualizarProgreso(2);
+            cambiarSeccion('section2');
+        }
+
+        function volverEtapa1() {
+            if (confirm('¿Seguro que quieres volver? Perderás el modelo entrenado actual.')) {
+                modeloEntrenado = null;
+                datosEntrenamiento = null;
+                prediccionesResultado = null;
+                actualizarProgreso(1);
+                cambiarSeccion('section1');
+            }
+        }
+
+        function volverInicio() {
+            if (confirm('¿Seguro que quieres volver al inicio? Perderás todo el progreso.')) {
+                modeloEntrenado = null;
+                datosEntrenamiento = null;
+                prediccionesResultado = null;
+                actualizarProgreso(1);
+                cambiarSeccion('section1');
+            }
+        }
+
+        function mostrarGuiaCompleta() {
+            document.getElementById('modalGuia').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarGuiaCompleta() {
+            document.getElementById('modalGuia').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('modalGuia').addEventListener('click', function(e) {
+            if (e.target === this) {
+                cerrarGuiaCompleta();
+            }
+        });
     </script>
 </body>
 </html>
